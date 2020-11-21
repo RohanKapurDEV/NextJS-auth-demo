@@ -51,6 +51,20 @@ export const AuthProvider = ({ children }) => {
       });
   }
 
+  function loginGithub() {
+    const provider = new firebase.auth.GithubAuthProvider();
+
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(async (res) => {
+        console.log(await res.user.getIdTokenResult());
+        console.log(res.credential.signInMethod);
+        console.log(res.user.email);
+        console.log(res.user.displayName);
+      });
+  }
+
   function logout() {
     return firebase.auth().signOut();
   }
@@ -71,6 +85,7 @@ export const AuthProvider = ({ children }) => {
     currentUser,
     login,
     loginGoogle,
+    loginGithub,
     signup,
     logout,
     resetPassword,

@@ -54,6 +54,19 @@ export default function Home() {
           >
             <a>Log in with Google</a>
           </Button>
+          <br />
+          <br />
+          <Button
+            variant="solid"
+            variantColor="green"
+            width="100%"
+            isDisabled={authObject.currentUser}
+            onClick={async () => {
+              await authObject.loginGithub();
+            }}
+          >
+            <a>Log in with Github</a>
+          </Button>
         </Box>
       </Flex>
     </FlexContainer>
